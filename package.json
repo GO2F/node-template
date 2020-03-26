@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/GO2F/node-template/issues"
   },
-  "homepage": "https://github.com/GO2F/node-template#readme"
+  "homepage": "https://github.com/GO2F/node-template#readme",
+  "dependencies": {
+    "shelljs": "^0.8.3"
+  }
 }

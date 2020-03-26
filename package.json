@@ -1,5 +1,5 @@
 {
-  "name": "go2fe_node_template",
+  "name": "go2fe-node-template",
   "version": "0.0.1",
   "description": "go2fe前端代码模板",
   "main": "index.js",
@@ -10,7 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/GO2F/node-template.git"
   },
-  "author": "",
+  "author": {
+    "name": "yaozeyuan",
+    "email": "yaozeyuan93@gmail.com"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/GO2F/node-template/issues"

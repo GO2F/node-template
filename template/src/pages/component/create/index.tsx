@@ -30,6 +30,21 @@ export default class TablePage extends React.Component<any, any> {
     }
     return 'update';
   }
+  
+  getUniqueKey() {
+    let extendConfig: TypeExtends = this.props.route.extendConfig;
+
+    let keyConfigList = extendConfig.keyList;
+    for (let keyConfig of keyConfigList) {
+      // 目前支持直接展示int/string等文本类型
+
+      // 处理字段隐藏逻辑
+      if (keyConfig.is_unique_key) {
+        return keyConfig.key;
+      }
+    }
+    return "id";
+  }
 
   asyncFetchData = async () => {
     const extendConfig: TypeExtends = this.props.route.extendConfig;
@@ -58,6 +73,7 @@ export default class TablePage extends React.Component<any, any> {
     let extendConfig: TypeExtends = this.props.route.extendConfig;
 
     let baseApi = extendConfig.baseApiPath;
+    let uniqueKey = this.getUniqueKey();
     if (this.getPageType() === 'create') {
       // 对应create
       let api = baseApi + '/create';
@@ -89,7 +105,7 @@ export default class TablePage extends React.Component<any, any> {
           data: {
             // 更新信息中, 一定要带id
             ...item,
-            id: this.props.match.params.id
+            [uniqueKey]: this.props.match.params.id
           },
         })
         .catch(() => {

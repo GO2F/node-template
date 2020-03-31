@@ -97,11 +97,11 @@ export default class TablePage extends React.Component<any, any> {
           <div>
             <span>
               {extendConfig?.pageConfig?.detail ? (
-                <Link to={`/component/detail/${record[uniqueKey]}`}>详情</Link>
+                <Link to={`/${extendConfig.baseUrlPath}/detail/${record[uniqueKey]}`}>详情</Link>
               ) : null}
               <span>&nbsp;</span>
               {extendConfig?.pageConfig?.update ? (
-                <Link to={`/component/update/${record[uniqueKey]}`}>修改</Link>
+                <Link to={`/${extendConfig.baseUrlPath}/update/${record[uniqueKey]}`}>修改</Link>
               ) : null}
               <Divider type="vertical" />
               <Button

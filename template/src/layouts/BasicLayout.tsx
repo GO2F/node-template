@@ -16,6 +16,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'dva';
 import { Icon, Result, Button } from 'antd';
 import { formatMessage } from 'umi-plugin-react/locale';
+import router from "umi/router";
 
 import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
@@ -143,6 +144,19 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
   const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || '/') || {
     authority: undefined,
   };
+  if (location.pathname === "/") {
+    console.log(props.route.routes);
+    const routeList = props.route.routes;
+    if (routeList != undefined && routeList.length > 0) {
+      for (let item of routeList) {
+        let firstPath = item?.path;
+        if (firstPath !== undefined) {
+          router.push(firstPath);
+          break;
+        }
+      }
+    }
+  }
 
   return (
     <ProLayout

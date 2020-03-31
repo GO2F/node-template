@@ -105,7 +105,7 @@ export default class TablePage extends React.Component<any, any> {
           data: {
             // 更新信息中, 一定要带id
             ...item,
-            [uniqueKey]: this.props.match.params.id
+            [uniqueKey]: this.state.item[uniqueKey]
           },
         })
         .catch(() => {

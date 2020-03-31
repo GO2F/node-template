@@ -64,7 +64,7 @@ export default class TablePage extends React.Component<any, any> {
       console.log('create: add item =>', api, item);
       let response = await request
         .post(api, {
-          params: {
+          data: {
             ...item,
           },
         })
@@ -86,7 +86,7 @@ export default class TablePage extends React.Component<any, any> {
       console.log('update: submit item =>', api, item);
       let response = await request
         .post(api, {
-          params: {
+          data: {
             // 更新信息中, 一定要带id
             ...item,
           },

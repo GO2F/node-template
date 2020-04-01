@@ -1,12 +1,13 @@
 import React from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { Card, message, Button, Modal } from 'antd';
+import { Card, message, Button, Modal, Row, Col } from 'antd';
 import Link from 'umi/link';
 import { Divider } from 'antd';
 
 import request from 'umi-request';
 import { TypeExtends } from '../type_extend';
 import TableBase from './table_basic';
+import { router } from 'umi';
 // import styles from './index.less';
 
 export default class TablePage extends React.Component<any, any> {
@@ -123,9 +124,23 @@ export default class TablePage extends React.Component<any, any> {
       },
     });
 
+    let createButtonEle = (
+      <Row type="flex" justify="end">
+        <Button
+          type="primary"
+          onClick={() => {
+            router.push(`${extendConfig.baseUrlPath}/create`);
+          }}
+        >
+          新建
+        </Button>
+      </Row>
+    );
+
     return (
       <PageHeaderWrapper>
         <Card>
+          {extendConfig?.pageConfig?.create ? createButtonEle : null}
           <TableBase columns={tableColumnList} data={this.state.itemList} />
         </Card>
       </PageHeaderWrapper>

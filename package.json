@@ -1,6 +1,6 @@
 {
   "name": "go2fe-node-template",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "go2fe前端代码模板",
   "main": "index.js",
   "scripts": {

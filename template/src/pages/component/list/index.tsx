@@ -1,17 +1,17 @@
-import React from "react";
-import { PageHeaderWrapper } from "@ant-design/pro-layout";
-import { Card, message, Button, Modal } from "antd";
-import Link from "umi/link";
-import { Divider } from "antd";
+import React from 'react';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { Card, message, Button, Modal } from 'antd';
+import Link from 'umi/link';
+import { Divider } from 'antd';
 
-import request from "umi-request";
-import { TypeExtends } from "../type_extend";
-import TableBase from "./table_basic";
+import request from 'umi-request';
+import { TypeExtends } from '../type_extend';
+import TableBase from './table_basic';
 // import styles from './index.less';
 
 export default class TablePage extends React.Component<any, any> {
   state = {
-    itemList: []
+    itemList: [],
   };
 
   // 获取unique_key对应字段, 默认为id
@@ -24,7 +24,7 @@ export default class TablePage extends React.Component<any, any> {
         return keyConfig.key;
       }
     }
-    return "id";
+    return 'id';
   }
 
   async asyncFetchData() {
@@ -36,7 +36,7 @@ export default class TablePage extends React.Component<any, any> {
     });
     let itemList = response?.data || [];
     this.setState({
-      itemList: itemList
+      itemList: itemList,
     });
   }
 
@@ -47,14 +47,14 @@ export default class TablePage extends React.Component<any, any> {
     let response = await request
       .post(api, {
         params: {
-          id: id
-        }
+          id: id,
+        },
       })
       .catch(() => {
         return {};
       });
     if (response.code === 0) {
-      message.info("删除成功", 1);
+      message.info('删除成功', 1);
     }
     // 删除完毕后重新载入数据
     await this.asyncFetchData();
@@ -63,7 +63,7 @@ export default class TablePage extends React.Component<any, any> {
   componentDidMount() {
     // 初始化数据
     this.asyncFetchData();
-    console.log("数据初始化完毕 this.state.itemList => ", this.state.itemList);
+    console.log('数据初始化完毕 this.state.itemList => ', this.state.itemList);
   }
 
   render(): React.ReactNode {
@@ -82,26 +82,26 @@ export default class TablePage extends React.Component<any, any> {
       let columnItem = {
         title: keyConfig.title,
         dataIndex: keyConfig.key,
-        key: keyConfig.key
+        key: keyConfig.key,
       };
       tableColumnList.push(columnItem);
     }
     let uniqueKey = this.getUniqueKey();
     // 添加操作栏
     tableColumnList.push({
-      title: "操作",
-      key: "action",
-      fixed: "right",
+      title: '操作',
+      key: 'action',
+      fixed: 'right',
       render: (text: string, record: any) => {
         return (
           <div>
             <span>
               {extendConfig?.pageConfig?.detail ? (
-                <Link to={`/${extendConfig.baseUrlPath}/detail/${record[uniqueKey]}`}>详情</Link>
+                <Link to={`${extendConfig.baseUrlPath}/detail/${record[uniqueKey]}`}>详情</Link>
               ) : null}
               <span>&nbsp;</span>
               {extendConfig?.pageConfig?.update ? (
-                <Link to={`/${extendConfig.baseUrlPath}/update/${record[uniqueKey]}`}>修改</Link>
+                <Link to={`${extendConfig.baseUrlPath}/update/${record[uniqueKey]}`}>修改</Link>
               ) : null}
               <Divider type="vertical" />
               <Button
@@ -111,7 +111,7 @@ export default class TablePage extends React.Component<any, any> {
                     content: `确认删除记录${record[uniqueKey]}?`,
                     onOk: () => {
                       this.asyncRemoveItem(record[uniqueKey]);
-                    }
+                    },
                   });
                 }}
               >
@@ -120,7 +120,7 @@ export default class TablePage extends React.Component<any, any> {
             </span>
           </div>
         );
-      }
+      },
     });
 
     return (
